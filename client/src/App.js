@@ -1,7 +1,7 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Todo from "./pages/Todo";
-import Detail from "./pages/Detail";
+import TodosCompleted from "./pages/TodosCompleted";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 
@@ -10,15 +10,13 @@ function App() {
     <Router>
       <div>
         <Nav />
-        <Switch>
-          <Route exact path="/" component={Todo} />
-          <Route exact path="/books" component={Todo} />
-          <Route exact path="/books/:id" component={Detail} />
-          <Route component={NoMatch} />
-        </Switch>
+        <Route exact path="/" component={Todo} />
+        <Route exact path="/todos" component={Todo} />
+        <Route exact path="/completed-todos" component={TodosCompleted} />
       </div>
     </Router>
   );
 }
 
 export default App;
+// <Route component={NoMatch} />

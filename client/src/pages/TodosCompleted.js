@@ -1,14 +1,12 @@
 import React, { Component } from "react";
+import { Col, Row, Container } from "../components/Grid";
+import Jumbotron from "../components/Jumbotron";
 import DeleteBtn from "../components/DeleteBtn";
 import Buttons from "../components/Buttons";
-import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
-import { Link } from "react-router-dom";
-import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { TextArea, FormBtn } from "../components/Form";
+import API from "../utils/API";
 
-class Todo extends Component {
+class Detail extends Component {
   state = {
     books: [],
     synopsis: ""
@@ -31,7 +29,7 @@ class Todo extends Component {
   };
 
   completeItem = id => {
-    API.updateCompleted(id)
+    API.deleteBook(id)
       .then(res => this.loadBooks())
       .catch(err => console.log(err));
   };
@@ -57,38 +55,15 @@ class Todo extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-6">
+        <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Items for Today</h1>
-            </Jumbotron>
-            <form>
-              <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Add note here..."
-              />
-              <FormBtn onClick={this.handleFormSubmit}>Submit a Item</FormBtn>
-            </form>
-          </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Active Items Left {this.state.books.length}</h1>
-              <a className="navbar-brand" href="/completed-todos">
-                Completed Items
-              </a>
+              <h1>Completed Items {this.state.books.length}</h1>
             </Jumbotron>
             {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
                     <strong>{book.synopsis}</strong>
-                    <Buttons
-                      className="float-right"
-                      onClick={() => this.completeItem(book._id)}
-                    >
-                      <i class="check circle icon" />
-                    </Buttons>
                     <DeleteBtn onClick={() => this.deleteBook(book._id)} />
                   </ListItem>
                 ))}
@@ -103,4 +78,4 @@ class Todo extends Component {
   }
 }
 
-export default Todo;
+export default Detail;
