@@ -28,12 +28,6 @@ class Detail extends Component {
       .catch(err => console.log(err));
   };
 
-  completeItem = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
-
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({

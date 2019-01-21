@@ -59,7 +59,7 @@ class Todo extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Items for Today</h1>
+              <h1>Lives</h1>
             </Jumbotron>
             <form>
               <TextArea
@@ -68,33 +68,33 @@ class Todo extends Component {
                 name="synopsis"
                 placeholder="Add note here..."
               />
-              <FormBtn onClick={this.handleFormSubmit}>Submit a Item</FormBtn>
+              <FormBtn onClick={this.handleFormSubmit}>Submit</FormBtn>
             </form>
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Active Items Left {this.state.books.length}</h1>
-              <a className="navbar-brand" href="/completed-todos">
+              <h1>Active Lives {this.state.books.length}</h1>
+              {/* <a className="navbar-brand" href="/completed-todos">
                 Completed Items
-              </a>
+              </a> */}
             </Jumbotron>
             {this.state.books.length ? (
               <List>
                 {this.state.books.map(book => (
                   <ListItem key={book._id}>
                     <strong>{book.synopsis}</strong>
-                    <Buttons
+                    {/* <Buttons
                       className="float-right"
                       onClick={() => this.completeItem(book._id)}
                     >
                       <i class="check circle icon" />
-                    </Buttons>
+                    </Buttons> */}
                     <DeleteBtn onClick={() => this.deleteBook(book._id)} />
                   </ListItem>
                 ))}
               </List>
             ) : (
-              <h3>No Items to Display</h3>
+              <h3>No Lives to Display</h3>
             )}
           </Col>
         </Row>
